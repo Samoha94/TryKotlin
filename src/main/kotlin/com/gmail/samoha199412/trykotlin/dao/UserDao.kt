@@ -7,4 +7,7 @@ import org.springframework.stereotype.Repository
 
 @Repository
 interface UserDao : JpaRepository<User, Long> {
+
+    fun findUserById(id: Long): User
+
 }

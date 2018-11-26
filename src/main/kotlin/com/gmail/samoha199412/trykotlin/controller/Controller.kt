@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody
 
 @Controller
 @RequestMapping("/api")
-class Controller(val userService: UserService) {
+class Controller (val userService: UserService) {
 
     @PostMapping("/users")
     @ResponseBody
