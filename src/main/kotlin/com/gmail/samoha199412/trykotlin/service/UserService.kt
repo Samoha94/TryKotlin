@@ -8,5 +8,7 @@ interface UserService {
 
    fun addUser(user : User) : List<User>
 
+   fun getUserInfo(id :Long) : User
+
 
 }

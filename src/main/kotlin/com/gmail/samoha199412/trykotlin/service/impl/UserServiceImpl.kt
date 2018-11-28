@@ -19,4 +19,10 @@ class UserServiceImpl(val userDao: UserDao) : UserService {
         return userDao.findAll()
 
     }
+
+    override fun getUserInfo(id: Long): User {
+
+        return userDao.findUserById(id)
+
+    }
 }

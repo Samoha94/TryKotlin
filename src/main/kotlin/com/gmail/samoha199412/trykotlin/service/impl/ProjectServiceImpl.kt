@@ -1,5 +1,6 @@
 package com.gmail.samoha199412.trykotlin.service.impl
 
+import com.gmail.samoha199412.trykotlin.dao.ProjectDao
 import com.gmail.samoha199412.trykotlin.dao.UserDao
 import com.gmail.samoha199412.trykotlin.entity.Project
 import com.gmail.samoha199412.trykotlin.entity.User
@@ -11,15 +12,24 @@ import org.springframework.stereotype.Service
  */
 
 @Service
-class ProjectServiceImpl(val userDao: UserDao) : ProjectService {
+class ProjectServiceImpl(val userDao: UserDao, val projectDao: ProjectDao) : ProjectService {
 
-    override fun addProjectToUser(userId: Long, projectName: String): User {
+    override fun addProjectToUser(userId: Int, projectName: String): User {
 
-        var newProject:Project = Project()
 
-        newProject.projectName = projectName
+        val project = Project()
 
-        var projects: List<Project>  = mutableListOf(newProject)
+        project.projectName = projectName
+
+        val userInDB = userDao.findUserById(userId.toLong())
+
+        val userProjects = userInDB.projects
+
+        userProjects.add(project)
+
+        userDao.saveAndFlush(userInDB)
+
+        return userInDB
 
 
     }

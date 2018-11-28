@@ -7,6 +7,6 @@ import com.gmail.samoha199412.trykotlin.entity.User
  */
 interface ProjectService {
 
-    fun addProjectToUser(userId:Long, projectName:String) : User
+    fun addProjectToUser(userId:Int, projectName:String) : User
 
 }
